@@ -1,9 +1,6 @@
 import readlineSync from "readline-sync";
-//Playstation
-//Options:
-//Play a Game
-//Go back
 
+export function game(){
 function CreateCharacter (Name, Health, Punsh, Kick, Miss, Heal){
     this.Name = Name;
     this.Health = Health;
@@ -14,15 +11,14 @@ function CreateCharacter (Name, Health, Punsh, Kick, Miss, Heal){
 
 };
 
-const Eduard = new CreateCharacter("Eduard", 200, 4, 6, 0, 30);
-const Kuroko = new CreateCharacter("Kuroko", 100, 8, 12, 0, 20);
+const Eduard = new CreateCharacter("Eduard", 200, 4, 6, 0, 20);
+const Kuroko = new CreateCharacter("Kuroko", 100, 8, 12, 0, 15);
 const Sabine = new CreateCharacter("Sabine", 50, 17, 23, 0, 10);
 
 let PlayerCharacter, EnemyCharacter;
 
-const GameSelecting = readlineSync.question("The only Game your have is a 2D Fighting Game called Street Boxing. Play Street Boxing? << Yes >>, << No >>");
-
-console.log("You see a loading Screen. Now you are on the character Selection Screen.");
+console.log("The only Game your have is a 2D Fighting Game called Street Boxing. Your Favourite Game. Weird.");
+console.log("After a short loading time you are now on the character Selection Screen.");
 
 do{
 const GameBooting = readlineSync.question("You have 3 Options: 'Eduard', 'Kuroko', 'Sabine'. Whom do you choose? << Eduard >>(Health 200, Damage 4, Damage 6), << Kuroko >>(Health 100, Damage 8, Damage 12), << Sabine >> (Health 50, Damage 17, Damage 23)");
@@ -103,5 +99,5 @@ do{
     }
 
 }while(PlayerCharacter.Health > 0 && EnemyCharacter.Health > 0);
-
+}
 
