@@ -2,17 +2,20 @@
 let CharacterInventory = {};
 //Possible Items: Keys for Door,
 // rooms with items >> interact different code
-// little fight ?
 // cube for random number gen >> if 15 >> something happens
 // look at objects >> change them
 // pick up items
-// one room is one loop?
-// what do i want to include?
+
 // reduce, map, string methods, class, objects, spread operastor, conditionals, comma operator, array, loop, sort (character could sort a box
-// Table Options
-// throw a dice 3 times for whatever reason
-// learn some math homework
-//  read a coding book
+
+
+// sort a list?
+// calculator?
+// dice random roll?
+// go to the bathroom?
+// pick up a sandwich?
+// read fun book facts
+
 
 
 import readlineSync from "readline-sync";
@@ -34,12 +37,66 @@ else if (firstDecision === "Light" || firstDecision === "light") {
 
 console.log("You find a Light Switch and to your suprise it works like you would expect it to. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
-const lookAroundRoom = readlineSync.question("You can see a few things. What do you want to inspect? << Door >>, << Bookshelf >>, << Study Desk >>, << TV Stand >>, << Bed >>, << Your Pockets >>");
+let lookAroundRoom = readlineSync.question("You can see a few things. What do you want to inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << MyPockets >>");
 
 // do{
+lookAroundRoom = readlineSync.question("What do you want to Inspect now? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << MyPockets >>");
 
 
+//Door
+if(lookAroundRoom === "door" || lookAroundRoom === "Door"){
+    console.log("The Door is locked and i do not have the right Key yet.");
+}
+
+// Bookshelf
+else if(lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf"){
+    let AvailableBooks = readlineSync("There are actually some Books in the Book Shelf. Do you want to read some Books? << read >>, << back >>");
+    do{
+        if(AvailableBooks === "read" || AvailableBooks === "Read"){
+
+        }
+        else if(AvailableBooks === "back" || AvailableBooks === "Back"){
+            bool = false;
+        }
+    }while(bool === true);
 
 
+// Study Desk
+else if(lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk"){
 
-// }while();
+}
+
+// TV Stand
+else if(lookAroundRoom === "tvstand" || lookAroundRoom === "TVstand"){
+    let InspectTvStand = readlineSync("You go to the TV Stand and take a look. To your Suprise there is a Fully Functional Playstation under the TV Stand! Do you want to try the Playstation or do you want to Inspect something else in the Room? << Playstation >>, << back>>");
+    do{
+        InspectTvStand = readlineSync("Play or look at something else in the Room? << Playstation >>, << back >>");
+        if(InspectTvStand === "playstation" || InspectTvStand === "Playstation"){
+            
+        }
+        else if(InspectTvStand === "back" || InspectTvStand === "Back"){
+            bool = false;
+        }
+        else{
+            console.log("Stop picking your Nose and make a decision. << Playstation >>, << back >>");
+        }
+    }while(bool === true);
+
+}
+
+
+// Bed
+else if(lookAroundRoom === "bed" || lookAroundRoom === "Bed"){
+    console.log("It is still warm.");
+}
+else if(lookAroundRoom === "mypockets" || lookAroundRoom === "MyPockets"){
+    console.log("They are Empty. Where is my Stuff?");
+}
+else{
+    console.log("How do you spell words again?");
+};
+
+
+// }while(CharacterInventory === {});
+
+
