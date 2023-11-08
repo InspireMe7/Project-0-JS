@@ -1,4 +1,4 @@
-import {game} from "./PlayStation.js";
+import { game } from "./PlayStation.js";
 import readlineSync from "readline-sync";
 // Character
 let CharacterInventory = {};
@@ -35,66 +35,66 @@ else if (firstDecision === "Light" || firstDecision === "light") {
 
 console.log("You find a Light Switch and to your suprise it works like you would expect it to. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
-do{
+do {
     let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << MyPockets >>");
 
 
-//Door
-if(lookAroundRoom === "door" || lookAroundRoom === "Door"){
-    console.log("The Door is locked and i do not have the right Key yet.");
-}
+    //Door
+    if (lookAroundRoom === "door" || lookAroundRoom === "Door") {
+        console.log("The Door is locked and i do not have the right Key yet.");
+    }
 
-// Bookshelf
-else if(lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf"){
-    let AvailableBooks = readlineSync.question("There are actually some Books in the Book Shelf. Do you want to read some Books? << read >>, << back >>");
-    let boolBook = true;
-    do{
-        if(AvailableBooks === "read" || AvailableBooks === "Read"){
+    // Bookshelf
+    else if (lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf") {
+        let AvailableBooks = readlineSync.question("There are actually some Books in the Book Shelf. Do you want to read some Books? << read >>, << back >>");
+        let boolBook = true;
+        do {
+            if (AvailableBooks === "read" || AvailableBooks === "Read") {
 
-        }
-        else if(AvailableBooks === "back" || AvailableBooks === "Back"){
-            boolBook = false;
-        }
-    }while(boolBook === true);
-}
-
-
-// Study Desk
-else if(lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk"){
-
-}
-
-// TV Stand
-else if(lookAroundRoom === "tvstand" || lookAroundRoom === "TVstand"){
-    console.log("You go to the TV Stand and take a look. To your Suprise there is a Fully Functional Playstation under the TV Stand!");
-    let boolTV = true;
-    do{
-        let InspectTvStand = readlineSync.question("Play or look at something else in the Room? << Playstation >>, << back >>");
-        if(InspectTvStand === "playstation" || InspectTvStand === "Playstation"){
-            game();
-        }
-        else if(InspectTvStand === "back" || InspectTvStand === "Back"){
-            boolTV = false;
-        }
-        else{
-            console.log("Stop picking your Nose and make a decision. << Playstation >>, << back >>");
-        }
-    }while(bool === true);
-
-}
+            }
+            else if (AvailableBooks === "back" || AvailableBooks === "Back") {
+                boolBook = false;
+            }
+        } while (boolBook === true);
+    }
 
 
-// Bed
-else if(lookAroundRoom === "bed" || lookAroundRoom === "Bed"){
-    console.log("It is still warm.");
-}
-else if(lookAroundRoom === "mypockets" || lookAroundRoom === "MyPockets"){
-    console.log("They are Empty. Where is my Stuff?");
-}
-else{
-    console.log("How do you spell words again?");
-};
+    // Study Desk
+    else if (lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk") {
 
-}while(keepgoing === true);
+    }
+
+    // TV Stand
+    else if (lookAroundRoom === "tvstand" || lookAroundRoom === "TVstand") {
+        console.log("You go to the TV Stand and take a look. To your Suprise there is a Fully Functional Playstation under the TV Stand!");
+        let boolTV = true;
+        do {
+            let InspectTvStand = readlineSync.question("Play or look at something else in the Room? << Play >>, << back >>");
+            if (InspectTvStand === "play" || InspectTvStand === "Play") {
+                game();
+            }
+            else if (InspectTvStand === "back" || InspectTvStand === "Back") {
+                boolTV = false;
+            }
+            else {
+                console.log("Stop picking your Nose and make a decision. << Playstation >>, << back >>");
+            }
+        } while (boolTV === true);
+
+    }
+
+
+    // Bed
+    else if (lookAroundRoom === "bed" || lookAroundRoom === "Bed") {
+        console.log("It is still warm.");
+    }
+    else if (lookAroundRoom === "mypockets" || lookAroundRoom === "MyPockets") {
+        console.log("They are Empty. Where is my Stuff?");
+    }
+    else {
+        console.log("How do you spell words again?");
+    };
+
+} while (keepgoing === true);
 
 
