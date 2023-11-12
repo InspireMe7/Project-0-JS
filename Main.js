@@ -19,6 +19,8 @@ const month = monthlist[monthIndex];
 let doorOpen = false;
 let equasionNote = false;
 let keepgoing = true;
+let checkedNotebook = false;
+let lampLight = false;
 
 
 
@@ -35,17 +37,25 @@ let keepgoing = true;
 */
 
 console.log("You wake up in a Bed. You have a Strange feeling and you do not where you are. Everything is Dark, there is no Window. Only a small light comming from under what looks like a Door to you. What do you want to do now? ");
+do{
+let bedLightBool = true;
 const firstDecision = readlineSync.question("Try to find a light Switch << Light >> or, Stay in Bed because this is just a Nightmare. << Bed >> ");
-
 if (firstDecision === "Bed" || firstDecision === "bed") {
-    console.log("You stay in Bed and fall asleep. Shortly after you are woken up by a really loud noise that is comming from the direction of the Door.");
+    bedLightBool = false;
+    console.log("You stay in Bed and fall asleep. Shortly after you are woken up by a really loud noise that is comming from the direction of the Door. Sounds like a furious Knocking...");
+    readlineSync.keyInPause();
     console.log("After starring into the Darkness in disbelieve you realise this can not be a Dream and you get up to look for a light Source.");
     readlineSync.keyInPause();
 }
 else if (firstDecision === "Light" || firstDecision === "light") {
+    bedLightBool = false;
     console.log("You get up to look for a Lightsource.");
     readlineSync.keyInPause();
 }
+else{
+    console.log("Ugh. Try again.");
+}
+}while(bedLightBool === true);
 
 console.log("You find a Light Switch and to your suprise it works like you would expect it to. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
@@ -114,7 +124,7 @@ do {
 
     // Bookshelf ( Books, part of code)
     else if (lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf") {
-        let AvailableBooks = readlineSync.question("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. << read >>, << back >>");
+        let AvailableBooks = readlineSync.question("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. Every Book is Sorted by A Number. Book Number 1 is the Bible. I find myself disagreeing with that. << read >>, << back >>");
         let boolBook = true;
         do {
             if (AvailableBooks === "read" || AvailableBooks === "Read") {
@@ -132,20 +142,52 @@ do {
     else if (lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk") {
         console.log("You go to the Study Desk, sit down on the Office Chair in front of it and take a look at the Table. The Table is made out of Wood and is touching the Wall behind it. On the Wall is a Framed Picture containing just a Big Questionmark. The Table itself looks really new and there are only a few Items laying on it:");
         console.log("A Calculator, a Notebook, a Sandwich, a Bottle of Water and a Laptop.");
-        let inspectingTable = true;
-        let checkedNotebook = false;
-        let lampLight = false;
         do {
+            let inspectingTable = true;
+            let calculate = true;
             let tableItems = readlineSync.question("What do you want to Inspect? << Calculator >>, << Notebook >>, << Lamp >>, << back >>");
             if (tableItems === "Calculator" || tableItems === "calculator") {
                 console.log(`An odd looking Calculator. Why? Trust me, it looks really odd.`);
-                if (equasionNote === false) {
-                    let calculate = readlineSync.question("Do you want to calculate something? << yes >>, << no >>");
-                }
-                if (calculate === "yes" || calculate === "Yes") {
-                    let whatToCalculate = readlineSync.question("What do you want to calculate?");
-                    console.log(`The Display of the calculator says the Answer to ${whatToCalculate} is: ERROR 404. Told you. Really odd calculator.`);
-                }
+                do {
+                    let calculate = readlineSync.question("Do you want to calculate something? << yes >>, << no >>, << maybe >>");
+                    if (calculate === "yes" || calculate === "Yes") {
+                        if (equasionNote === false) {
+                            let whatToCalculate = readlineSync.question("What do you want to calculate?");
+                            console.log(`The Display of the Calculator says the Answer to ${whatToCalculate} is: ERROR 404.`);
+                        }
+                        else {
+                            console.log("What do you want to calculate?");
+                            let equasionCalc = readlineSync.question("The equasion from the Notebook: << Equasion >>, Something else: << other >>");
+                            if (equasionCalc === "Equasion" || equasionCalc === "equasion") {
+                                console.log("You type in the equasion from the Notebook.");
+                                console.log("40-(2+1)÷3+3%4");
+                                readlineSync.keyInPause();
+                                console.log(" 42 ");
+                                readlineSync.keyInPause();
+                                console.log(" 42?");
+                                readlineSync.keyInPause();
+                                console.log(" 42 ... ");
+                                readlineSync.keyInPause();
+                                console.log("Of course! 42! The ultimate question of life, the universe, and everything!");
+                                readlineSync.keyInPause();
+                                console.log("Well at least in Douglas Adams's 1979 novel, The Hitchhiker's Guide to the Galaxy");
+                                console.log("But... why would someone hide an equasion that equals 42 just to reference a Book?");
+                            }
+                            else {
+                                console.log(`The Display of the Calculator says the Answer to ${whatToCalculate} is: ERROR 404.`);
+                            }
+                        }
+                    }
+                    else if(calculate === "no" || calculate === "No"){
+                        calculatingBool = false;
+                    }
+                    else if(calculate === "Maybe" || calculate === "maybe"){
+                        console.log("To Calculate, or not to Calculate, that is the Question!");
+                    }
+                    else{
+                        ("I hate Math.");
+                    }
+                } while (calculatingBool = true);
             }
             else if (tableItems === "Notebook" || tableItems === "notebook") {
                 do {
@@ -168,7 +210,7 @@ do {
                             if (lampLight === true) {
                                 console.log("Wait. what?! I found something! The Light from the Lamp revealed an equasion. Well that's certainly a suprise!");
                                 readlineSync.keyInPause();
-                                console.log(`The equasion is: (8*4)-(5+2)÷1+3%4. Why would someone hide an equasion? Let me wrip it out the Notebook. *Note Added*`);
+                                console.log(`The equasion is: 40-(2+1)÷3+3%4. Why would someone hide an equasion? Let me wrip it out the Notebook. *Note Added*`);
                                 equasionNote = true;
                             }
                             else {
@@ -203,6 +245,7 @@ do {
 
             }
         } while (inspectingTable = true);
+    }
     // Night Stand with Gameboy(FizzBuzz? + Clue)
 
     // Calendar
