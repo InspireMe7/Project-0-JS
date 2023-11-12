@@ -22,6 +22,7 @@ let keepgoing = true;
 let checkedNotebook = false;
 let lampLight = false;
 let checkAgain = true;
+let bookShelfNote = false;
 
 
 
@@ -125,17 +126,37 @@ do {
 
     // Bookshelf ( Books, part of code)
     else if (lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf") {
-        let AvailableBooks = readlineSync.question("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. Every Book is Sorted by A Number. Book Number 1 is the Bible. I find myself disagreeing with that. << read >>, << back >>");
         let boolBook = true;
-        do {
-            if (AvailableBooks === "read" || AvailableBooks === "Read") {
-                let shelfBooks = readlineSync.question("You see many Books in the Shelf. You take a closer look at some of the Books:");
+        if (bookShelfNote = false) {
+            let AvailableBooks = readlineSync.question("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. On first Glance all i can see are dusty Old Books. They are all sorted by a Number. Book Number 1 is a really dusty Version of the Bible. << back >>");
+            do {
+                if (AvailableBooks === "back" || AvailableBooks === "Back") {
+                    boolBook = false;
+                }
+            } while (boolBook === true);
+        }
+        else {
+            console.log("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. On first Glance all i can see are dusty Old Books. They are all sorted by a Number. Book Number 1 is a really dusty Version of the Bible. I wonder which Book is placed on Number 42?");
+            let booksWithNote = readlineSync.question("Check Book at Number 42: << check >>, << back >>");
+            do {
+                if (booksWithNote === "check" || booksWithNote === "Check") {
+                    console.log("Well well well. What do we have here?");
+                    readlineSync.keyInPause();
+                    console.log("Douglas Adams's 1979 novel, The Hitchhiker's Guide to the Galaxy.");
+                    readlineSync.keyInPause();
+                    console.log("You start to leaf through the book and forget about your Surroundings for a moment.");
+                    readlineSync.keyInPause();
+                    console.log("What is that? In the middle of the Book you find a Note. It says: 6C");
+                    CharacterInventory.push("6C");
+                    console.log("I better write this down on a Note and put it in my Pocket.");
+                    boolBook = false;
+                }
+                else if (booksWithNote === "back" || booksWithNote === "Back") {
+                    boolBook = false;
+                }
 
-            }
-            else if (AvailableBooks === "back" || AvailableBooks === "Back") {
-                boolBook = false;
-            }
-        } while (boolBook === true);
+            } while (boolBook === true);
+        }
     }
 
 
@@ -146,6 +167,7 @@ do {
         let inspectingTable = true;
         do {
             let tableItems = readlineSync.question("What do you want to Inspect? << Calculator >>, << Notebook >>, << Lamp >>, << back >>");
+            // Calculator
             if (tableItems === "Calculator" || tableItems === "calculator") {
                 console.log(`An odd looking Calculator. Why? Trust me, it looks really odd.`);
                 let calculatingBool = true;
@@ -172,7 +194,8 @@ do {
                                 console.log("Of course! 42! The ultimate question of life, the universe, and everything!");
                                 readlineSync.keyInPause();
                                 console.log("Well at least in Douglas Adams's 1979 novel, The Hitchhiker's Guide to the Galaxy.");
-                                console.log("But... why would someone hide an equasion that equals 42 just to reference a Book?");
+                                console.log("But... why would someone hide an equasion that equals 42 just to reference a Book? *Note Added*");
+                                bookShelfNote = true;
                             }
                             else {
                                 console.log(`The Display of the Calculator says the Answer to "${equasionCalc}" is: ERROR 404.`);
@@ -269,7 +292,7 @@ do {
                 } while (leaveLamp === false);
 
             }
-            else if(tableItems === "Back" || tableItems === "back"){
+            else if (tableItems === "Back" || tableItems === "back") {
                 inspectingTable = false;
             }
             else {
@@ -280,7 +303,6 @@ do {
     // Night Stand with Gameboy(FizzBuzz? + Clue)
 
     // Calendar
-    // Am i really looking at a Calendar in a Room? How will that help me?
     else if (lookAroundRoom === "Calendar" || lookAroundRoom === "calendar") {
         console.log("You notice a Calendar hanging between the Study Desk and the Door.");
         console.log(`According to this Calendar today is ${currentDate}.`);
@@ -291,7 +313,9 @@ do {
             let calendartext = readlineSync.question("What do you want to do now? << Inspect >>, << back >>");
             if (calendartext === "Inspect" || calendartext === "inspect") {
                 console.log(`You take a closer look at the Calendar and notice that one Date is Circled in Red and has a Big Red "B" written on it. It is the 3rd of ${month}.`);
-                console.log("Maybe that means something?");
+                console.log("B3 ... Maybe that means something?");
+                readlineSync.keyInPause();
+                console.log("Just in case i will write it down on a Note and put it into my Pocket");
                 readlineSync.keyInPause();
             }
             else if (calendartext === "Back" || calendartext === "back") {
@@ -311,6 +335,8 @@ do {
         let todayTime = new Date();
         let time = todayTime.getHours() + ":" + todayTime.getMinutes()
         console.log(`${time}`);
+        readlineSync.keyInPause();
+        console.log("i don't know what i expected.");
     }
 
     // TV Stand ( playstation code note)
@@ -339,7 +365,12 @@ do {
 
     // Pocket (Inventory, collects stuff)
     else if (lookAroundRoom === "mypockets" || lookAroundRoom === "MyPockets") {
-        console.log("They are Empty. Where is my Stuff?");
+        if (CharacterInventory === undefined) {
+            console.log("They are Empty. Where is my Stuff?");
+        }
+        else {
+            console.log(CharacterInventory);
+        }
     }
 
 
