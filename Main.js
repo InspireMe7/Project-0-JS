@@ -25,6 +25,7 @@ let checkAgain = true;
 let bookShelfNote = false;
 let PlayerWon = false;
 let wrotedown = false;
+let calendarHint = false;
 
 
 // read fun book facts
@@ -311,13 +312,19 @@ do {
 
         let calendarBool = true;
         do {
-            let calendartext = readlineSync.question("What do you want to do now? << Inspect >>, << back >>");
+            let calendartext = readlineSync.question("What do you want to do now? Take a closer look at the Calendar: << Inspect >>, Leave the Calendar alone: << back >>");
             if (calendartext === "Inspect" || calendartext === "inspect") {
                 console.log(`You take a closer look at the Calendar and notice that one Date is Circled in Red and has a Big Red "B" written on it. It is the 3rd of ${month}.`);
-                console.log("B3 ... Maybe that means something?");
-                readlineSync.keyInPause();
-                console.log("Just in case i will write it down on a Note and put it into my Pocket");
-                readlineSync.keyInPause();
+                if (calendarHint === false) {
+                    console.log("B3 ... Maybe that means something?");
+                    readlineSync.keyInPause();
+                    console.log("Just in case i will write it down on a Note and put it into my Pocket");
+                    CharacterInventory.push("B3");
+                    readlineSync.keyInPause();
+                }
+                else{
+                    console.log("I already wrote that down.");
+                }
             }
             else if (calendartext === "Back" || calendartext === "back") {
                 calendarBool = false;
@@ -348,22 +355,22 @@ do {
             let InspectTvStand = readlineSync.question("Play or look at something else in the Room? << Play >>, << back >>");
             if (InspectTvStand === "play" || InspectTvStand === "Play") {
                 let didPlayerWin = game(PlayerWon);
-                    if(didPlayerWin === true && wrotedown === false){
-                        console.log("You are happy that you won. But then the Screen turned Black and showed some white Letters: 7A.");
-                        readlineSync.keyInPause();
-                        console.log("Did they really just give me a Hint for winning a Video Game?");
-                        readlineSync.keyInPause();
-                        console.log("...");
-                        readlineSync.keyInPause();
-                        console.log("I mean ...");
-                        readlineSync.keyInPause();
-                        console.log("You know what i will take it. Let's write this Down.");
-                        // CharacterInventory.push("7A");
-                        wrotedown = true;
-                    }
-                    else if(didPlayerWin === true && wrotedown === true){
-                        console.log("I already wrote down the Code. I keep playing 'cause i love this Game!");
-                    }
+                if (didPlayerWin === true && wrotedown === false) {
+                    console.log("You are happy that you won. But then the Screen turned Black and showed some white Letters: 7A.");
+                    readlineSync.keyInPause();
+                    console.log("Did they really just give me a Hint for winning a Video Game?");
+                    readlineSync.keyInPause();
+                    console.log("...");
+                    readlineSync.keyInPause();
+                    console.log("I mean ...");
+                    readlineSync.keyInPause();
+                    console.log("You know what i will take it. Let's write this Down.");
+                    CharacterInventory.push("7A");
+                    wrotedown = true;
+                }
+                else if (didPlayerWin === true && wrotedown === true) {
+                    console.log("I already wrote down the Code. I keep playing 'cause i love this Game!");
+                }
             }
             else if (InspectTvStand === "back" || InspectTvStand === "Back") {
                 boolTV = false;
