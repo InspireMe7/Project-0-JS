@@ -4,7 +4,7 @@ import { game } from "./PlayStation.js";
 import readlineSync from "readline-sync";
 
 // Character
-let CharacterInventory = {};
+let CharacterInventory = [];
 
 // For Calendar Date
 let currentDate = new Date();
@@ -23,7 +23,8 @@ let checkedNotebook = false;
 let lampLight = false;
 let checkAgain = true;
 let bookShelfNote = false;
-
+let PlayerWon = false;
+let wrotedown = false;
 
 
 // read fun book facts
@@ -346,13 +347,29 @@ do {
         do {
             let InspectTvStand = readlineSync.question("Play or look at something else in the Room? << Play >>, << back >>");
             if (InspectTvStand === "play" || InspectTvStand === "Play") {
-                game();
+                let didPlayerWin = game(PlayerWon);
+                    if(didPlayerWin === true && wrotedown === false){
+                        console.log("You are happy that you won. But then the Screen turned Black and showed some white Letters: 7A.");
+                        readlineSync.keyInPause();
+                        console.log("Did they really just give me a Hint for winning a Video Game?");
+                        readlineSync.keyInPause();
+                        console.log("...");
+                        readlineSync.keyInPause();
+                        console.log("I mean ...");
+                        readlineSync.keyInPause();
+                        console.log("You know what i will take it. Let's write this Down.");
+                        // CharacterInventory.push("7A");
+                        wrotedown = true;
+                    }
+                    else if(didPlayerWin === true && wrotedown === true){
+                        console.log("I already wrote down the Code. I keep playing 'cause i love this Game!");
+                    }
             }
             else if (InspectTvStand === "back" || InspectTvStand === "Back") {
                 boolTV = false;
             }
             else {
-                console.log("Stop picking your Nose and make a decision. << Playstation >>, << back >>");
+                console.log("Come on let's play");
             }
         } while (boolTV === true);
 
