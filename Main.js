@@ -26,7 +26,7 @@ let checkAgain = true;
 let PlayerWon = false;
 let wrotedown = false;
 let calendarHint = false;
-
+let stare = false;
 
 // read fun book facts
 
@@ -36,6 +36,7 @@ let calendarHint = false;
 - Playstation after winning > 7A
 - Study Desk > gives Book Shelf Book Name
 - Book Shelf > 6C
+- Waste Paper Basket > 4D
 
 
 */
@@ -64,7 +65,7 @@ do {
 console.log("You find a Light Switch. It works like you would expect a Light Switch to work. It switched on the Lights. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
 do {
-    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
+    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << Plant >>, << Window>>, << basket >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
 
 
     //Door ( it is an electrical door)
@@ -160,7 +161,9 @@ do {
             } while (boolBook === true);
         }
     }
+    // Plant
 
+    // Window
 
     // Study Desk
     else if (lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk") {
@@ -331,6 +334,110 @@ do {
                 console.log("I mean it won't hurt to take a look.");
             }
         } while (fizzBuzzBool === true);
+    }
+    // Waste Paper Basket
+    else if (lookAroundRoom === "Basket" || lookAroundRoom === "basket") {
+        console.log("You walk to the Waste Paper Basket next to the Study Desk and take a look.");
+        readlineSync.keyInPause();
+        console.log("Well. Why is there so much Paper in there?");
+        readlineSync.keyInPause();
+        let BasketBool = true;
+        let rummage = 0;
+        do {
+            if (stare === false) {
+                let basketCode = readlineSync.question("What do you want to do now? Stare at the Basket: << stare >>, look somewhere else: << back >>");
+                if (basketCode === "stare" || basketCode === "Stare") {
+                    console.log("You keep Staring at the Basket. After 5 minutes you give up because you realise it doesn't have any answers either.");
+                    readlineSync.keyInPause();
+                    console.log("But then you realise something. If the Basket has no Answers...");
+                    readlineSync.keyInPause();
+                    console.log("Maybe the Paper inside the Basket does!");
+                    stare = true;
+                    BasketBool = false;
+                }
+                else if (basketCode === "back" || basketCode === "Back") {
+                    BasketBool = false;
+                }
+                else {
+                    console.log("I wonder if i win a Starring Battle against the Paper Basket");
+                }
+            }
+            else if (stare === true) {
+                console.log("I mean, what if the Papers do have answers?");
+                let basketCodeTrue = readlineSync.question("rummage through the Paper Basket: << rummage >>  look somewhere else: << back >>");
+                if (basketCodeTrue === "Rummage" || basketCodeTrue === "rummage" || basketCodeTrue === "rumage" || basketCodeTrue === "Rumage") {
+                    console.log("You rummage through the Paper Basket.");
+                    readlineSync.keyInPause();
+                    if (rummage === 0) {
+                        console.log("You pick out the first Piece of Paper and look at it: ");
+                        readlineSync.keyInPause();
+                        console.log("It's a Shopping List...");
+                        let shoppingList = ["Pumpkin", "Onions", "Potatoes", "Carrots", "Ice Cream"];
+                        console.log(shoppingList);
+                        readlineSync.keyInPause();
+                        rummage = 1;
+                    }
+                    else if (rummage === 1) {
+                        console.log("You pick out yoursecond Piece of Paper and look at it: ");
+                        readlineSync.keyInPause();
+                        console.log("It is a Quote from Marcus Aurelius. He was a Roman Emperor and followed the Path of the Stoic Philosophy: ");
+                        readlineSync.keyInPause();
+                        console.log(`“The happiness of your life depends upon the quality of your thoughts.”`);
+                        readlineSync.keyInPause();
+                        console.log("I will think about it");
+                        rummage = 2;
+                    }
+                    else if (rummage === 2) {
+                        console.log("You pick out your third piece of Paper and look at it: ");
+                        readlineSync.keyInPause();
+                        console.log("It is a Joke: ");
+                        readlineSync.keyInPause();
+                        console.log("Why did the egg hide? ");
+                        readlineSync.keyInPause();
+                        console.log("It was a little chicken.");
+                        readlineSync.keyInPause();
+                        console.log("What kind of Egg are you hiding Paper Basket? WHAT EGG ARE YOU HIDING?");
+                        rummage = 3;
+                    }
+                    else if (rummage === 3) {
+                        console.log("After picking up 3 Pices of Paper you notice something Green beneath all those White Papers");
+                        console.log("Why not check the Green one first?");
+                        console.log("You pick up the Green Paper and...");
+                        readlineSync.keyInPause();
+                        console.log("It says I am a Green Paper.");
+                        readlineSync.keyInPause();
+                        console.log(" ..... ")
+                        console.log("Maybe there is nothing in here after all.");
+                        rummage = 4;
+                    }
+                    else if (rummage = 4) {
+                        console.log("Even though u do not think there is a Hint in the Paper Basket you could not stop thinking about it.");
+                        console.log("What if there was a Hint beneath all those Papers after all?");
+                        console.log("There is only one way to find out... ");
+                        rummage = 5;
+                    }
+                    else if (rummage = 5) {
+                        console.log("You bend over the Paper Basket and take out Piece after Piece after Piece.");
+                        console.log("You need the Answer, you want to Escape.");
+                        console.log("And after 10 Minutes of rummaging you found something.");
+                        readlineSync.keyInPause();
+                        console.log("A tiny Piece of Paper not Bigger then a Thumb. And it says: D4");
+                        readlineSync.keyInPause();
+                        console.log("I KNEW IT. AND I WILL WRITE THIS DOWN!");
+                        CharacterInventory.push("D4");
+                    }
+                    else {
+                        console.log("I did enough rummaging. I have my Answer.");
+                    }
+                }
+                else if (basketCode === "back" || basketCode === "Back") {
+                    BasketBool = false;
+                }
+                else {
+                    console.log("So much Paper...");
+                }
+            }
+        } while (BasketBool === true);
     }
 
     // Calendar
