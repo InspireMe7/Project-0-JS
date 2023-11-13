@@ -28,6 +28,7 @@ let wrotedown = false;
 let calendarHint = false;
 let stare = false;
 let dooraproached = false;
+let bookShelfNote = false;
 
 // read fun book facts
 
@@ -81,7 +82,7 @@ do {
                     dooraproached = true;
                 }
                 else {
-                    console.log("The Door is locked. Same Num Pad. Remember: 4 Digits.");
+                    console.log("The Door is locked. Remember: 4 Digits.");
                 }
                     let typeCode = readlineSync.question(" Do you want to type in a Code? << Code >>, << back>>");
                     if (typeCode === "Code" || typeCode === "code") {
@@ -140,7 +141,7 @@ do {
     // Bookshelf ( Books, part of code)
     else if (lookAroundRoom === "bookshelf" || lookAroundRoom === "Bookshelf") {
             let boolBook = true;
-            if (bookShelfNote = false) {
+            if (bookShelfNote === false) {
                 let AvailableBooks = readlineSync.question("The Bookshelf is taller then you and reaches up to the Ceiling of the Room. You guess that it must be around 3 Meters tall. On first Glance all i can see are dusty Old Books. They are all sorted by a Number. Book Number 1 is a really dusty Version of the Bible. << back >>");
                 do {
                     if (AvailableBooks === "back" || AvailableBooks === "Back") {
