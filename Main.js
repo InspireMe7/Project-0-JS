@@ -73,12 +73,12 @@ do {
         let codeBlock = true;
         do {
             if (doorOpen === false) {
-                let typeCode = readlineSync.question("The Door is locked. You can see an electronical Lock with a Num Pad next to it. Do you want to type in a Code? << Code >>, << back>>");
+                let typeCode = readlineSync.question("The Door is locked. You can see an electronical Lock with a Num Pad next to it. It can only Take in 4 Digits. Do you want to type in a Code? << Code >>, << back>>");
                 if (typeCode === "Code" || typeCode === "code") {
                     let tryAgain = false;
                     do {
                         let code = readlineSync.question("Please Enter the Code: ");
-                        if (code === "nanana") {
+                        if (code === "7364") {
                             doorOpen = true;
                             tryAgain = false;
                             console.log("You hear a clicking Sound comming from the Door. It sounded like something was moving.");
