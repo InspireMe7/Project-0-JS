@@ -2,6 +2,7 @@
 
 import { game } from "./PlayStation.js";
 import readlineSync from "readline-sync";
+import { FizzBuzz } from "./fizzBuzz.js";
 
 // Character
 let CharacterInventory = [];
@@ -22,7 +23,6 @@ let keepgoing = true;
 let checkedNotebook = false;
 let lampLight = false;
 let checkAgain = true;
-let bookShelfNote = false;
 let PlayerWon = false;
 let wrotedown = false;
 let calendarHint = false;
@@ -64,7 +64,7 @@ do {
 console.log("You find a Light Switch. It works like you would expect a Light Switch to work. It switched on the Lights. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
 do {
-    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
+    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
 
 
     //Door ( it is an electrical door)
@@ -303,6 +303,35 @@ do {
         } while (inspectingTable === true);
     }
     // Night Stand with Gameboy(FizzBuzz? + Clue)
+    else if (lookAroundRoom === "nightstand" || lookAroundRoom === "Nightstand" || lookAroundRoom === "NightStand") {
+        console.log("You take a look at the Night Stand next to the bed.");
+        let fizzBuzzBool = true;
+        do {
+            let nightStand = readlineSync.question("You find a Gameboy on the small wooden Night Stand Table. The Game inside is called FizzBuzz. Do we want to play FizzBuzz? << play >>, << back >>");
+            if (nightStand === "play" || nightStand === "Play") {
+                console.log(`This is how FizzBuzz works: If a number is divisible by 3 it is "Fizz". If it is divisible by 5 it is "Buzz".`);
+                console.log(`If the Number is divisible by 3 and 5 you get a "FizzBuzz" Otherwise you just get your Number back.`);
+                let exit = false;
+                do {
+                    let fizzbuzzGame = readlineSync.question("Please enter your Number to play Fizzbuzz. If you do not want to keep playing type << Exit >>");
+                    let fizzBuzzGameNumber = Number(fizzbuzzGame);
+                    if (fizzbuzzGame === "Exit" || fizzbuzzGame === "exit") {
+                        exit = true;
+                    }
+                    else if (typeof (fizzBuzzGameNumber) === "number") {
+                        FizzBuzz(fizzBuzzGameNumber);
+                    }
+                    else ("We need a Number come on.");
+                } while (exit === false);
+            }
+            else if (nightStand === "back" || nightStand === "Back") {
+                fizzBuzzBool = false;
+            }
+            else {
+                console.log("I mean it won't hurt to take a look.");
+            }
+        } while (fizzBuzzBool === true);
+    }
 
     // Calendar
     else if (lookAroundRoom === "Calendar" || lookAroundRoom === "calendar") {
@@ -322,7 +351,7 @@ do {
                     CharacterInventory.push("B3");
                     readlineSync.keyInPause();
                 }
-                else{
+                else {
                     console.log("I already wrote that down.");
                 }
             }
@@ -331,7 +360,7 @@ do {
                 console.log("You turn around and look into the Room.");
             }
             else {
-                console.log("Uhmn...");
+                console.log("Uhmn... let's try again.");
                 readlineSync.keyInPause();
             }
         } while (calendarBool === true);
@@ -384,7 +413,7 @@ do {
 
     // Bed ( first note of other notes)
     else if (lookAroundRoom === "bed" || lookAroundRoom === "Bed") {
-        console.log("It is still warm.");
+        console.log("Nothing interesting going on here. It is still warm though.");
     }
 
     // Pocket (Inventory, collects stuff)
@@ -393,11 +422,9 @@ do {
             console.log("They are Empty. Where is my Stuff?");
         }
         else {
-            console.log(CharacterInventory);
+            console.log(`So far i wrote down: ${CharacterInventory}`);
         }
     }
-
-
     // For spelling Error
     else {
         console.log("How do you spell words again?");
