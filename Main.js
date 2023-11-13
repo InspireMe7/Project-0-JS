@@ -551,7 +551,7 @@ do {
 
         // Pocket (Inventory, collects stuff)
         else if (lookAroundRoom === "mypockets" || lookAroundRoom === "MyPockets") {
-            if (CharacterInventory === undefined) {
+            if (CharacterInventory.length === 0 ) {
                 console.log("They are Empty. Where is my Stuff?");
             }
             else {
