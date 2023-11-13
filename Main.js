@@ -27,6 +27,7 @@ let PlayerWon = false;
 let wrotedown = false;
 let calendarHint = false;
 let stare = false;
+let dooraproached = false;
 
 // read fun book facts
 
@@ -65,7 +66,7 @@ do {
 console.log("You find a Light Switch. It works like you would expect a Light Switch to work. It switched on the Lights. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
 do {
-    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << basket >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
+    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << Basket >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
 
 
     //Door ( it is an electrical door)
@@ -73,7 +74,14 @@ do {
         let codeBlock = true;
         do {
             if (doorOpen === false) {
-                let typeCode = readlineSync.question("The Door is locked. You can see an electronical Lock with a Num Pad next to it. It can only Take in 4 Digits. Do you want to type in a Code? << Code >>, << back>>");
+                if (dooraproached === false) {
+                    console.log("The Door is locked. You can see an electronical Lock with a Num Pad next to it.");
+                    console.log("After testing 1234, which did not work, you try 4321. Which also does not work.");
+                    console.log("All you know for sure is that this Num Pad takes 4 Numbers.");
+                }
+                else{
+                    console.log("The Door is locked. Same Num Pad. Remember: 4 Digits.");
+                let typeCode = readlineSync.question(" Do you want to type in a Code? << Code >>, << back>>");
                 if (typeCode === "Code" || typeCode === "code") {
                     let tryAgain = false;
                     do {
@@ -297,7 +305,7 @@ do {
             else if (tableItems === "Back" || tableItems === "back") {
                 inspectingTable = false;
             }
-            else if(tableItems === "Cactus" || tableItems === "cactus"){
+            else if (tableItems === "Cactus" || tableItems === "cactus") {
                 console.log("It is a tiny little Cacuts Vibing on the Table. Lovely!");
                 readlineSync.keyInPause();
             }
@@ -529,10 +537,10 @@ do {
             if (bedlooking === "under" || bedlooking === "Under") {
                 console.log("Nothing going on here. Not even Dust.");
             }
-            else if(bedlooking === "back" || bedlooking === "Back"){
+            else if (bedlooking === "back" || bedlooking === "Back") {
                 bedBool = false;
             }
-            else{
+            else {
                 console.log("What if there is something scary under the Bed?");
             }
         } while (bedBool === true);
