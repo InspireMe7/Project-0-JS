@@ -119,8 +119,8 @@ do {
                 }
             }
             else {
+                let openDecision = false;
                 do {
-                    let openDecision = false;
                     let openTheDoor = readlineSync.question("Do you want to Open the Door? << yes >>, << no >>");
                     if (openTheDoor === "yes" || openTheDoor === "Yes") {
                         codeBlock = false;
@@ -135,7 +135,7 @@ do {
                     else {
                         console.log("Once again i do not know what i want to do here. This whole Situation is just really confusing.");
                     }
-                } while (openDecision = false);
+                } while (openDecision === false);
             }
         } while (codeBlock === true);
     }
@@ -280,7 +280,7 @@ do {
                             console.log("I was not Daydreaming.");
                         }
                     }
-                    else {
+                    else if(equasionNote === true){
                         console.log("I had enough of this Notebook.");
                         noteBookBool = false;
                     }
