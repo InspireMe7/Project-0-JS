@@ -65,7 +65,7 @@ do {
 console.log("You find a Light Switch. It works like you would expect a Light Switch to work. It switched on the Lights. The bright Light from the Ceiling Lamp blinds you a bit at first, but after a few seconds your eyes got used to it and you look around yourself. You are in a small Room.");
 readlineSync.keyInPause();
 do {
-    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << Plant >>, << Window>>, << basket >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
+    let lookAroundRoom = readlineSync.question("What do you want to Inspect? << Door >>, << Bookshelf >>, << Studydesk >>, << basket >>, << TVstand >>, << Bed >>, << Nightstand >>, << WallClock >>, << Calendar>>, << Nightstand >>, << MyPockets >>");
 
 
     //Door ( it is an electrical door)
@@ -161,17 +161,14 @@ do {
             } while (boolBook === true);
         }
     }
-    // Plant
-
-    // Window
 
     // Study Desk
     else if (lookAroundRoom === "studydesk" || lookAroundRoom === "Studydesk") {
-        console.log("You go to the Study Desk, sit down on the Office Chair in front of it and take a look at the Wooden Table. It is touching the Wall behind it. On the Wall is a Framed Picture containing just a Big Black Questionmark. The Table itself looks really new and there are only a few Items laying on it:");
+        console.log("You go to the Study Desk, sit down on the Office Chair in front of it and take a look at the Wooden Table. It is touching the Wall behind it. On the Wall is a Framed Picture containing just a Big Black Questionmark. The Table itself looks really new and there are only a few Items on it:");
         console.log("A Calculator, a Notebook and a standing Lamp.");
         let inspectingTable = true;
         do {
-            let tableItems = readlineSync.question("What do you want to Inspect? << Calculator >>, << Notebook >>, << Lamp >>, << back >>");
+            let tableItems = readlineSync.question("What do you want to Inspect? << Calculator >>, << Notebook >>, << Lamp >>, << Cactus >> << back >>");
             // Calculator
             if (tableItems === "Calculator" || tableItems === "calculator") {
                 console.log(`An odd looking Calculator. Why? Trust me, it looks really odd.`);
@@ -299,6 +296,10 @@ do {
             }
             else if (tableItems === "Back" || tableItems === "back") {
                 inspectingTable = false;
+            }
+            else if(tableItems === "Cactus" || tableItems === "cactus"){
+                console.log("It is a tiny little Cacuts Vibing on the Table. Lovely!");
+                readlineSync.keyInPause();
             }
             else {
                 console.log("How hard can it be to pick one of those Items?");
@@ -520,7 +521,21 @@ do {
 
     // Bed ( first note of other notes)
     else if (lookAroundRoom === "bed" || lookAroundRoom === "Bed") {
-        console.log("Nothing interesting going on here. It is still warm though.");
+        console.log("It is still warm.");
+        readlineSync.keyInPause();
+        let bedBool = true;
+        do {
+            let bedlooking = readlineSync.question("Should i take a look under the Bed? Look under the Bed: << under >> Get back to the Room: << back >>");
+            if (bedlooking === "under" || bedlooking === "Under") {
+                console.log("Nothing going on here. Not even Dust.");
+            }
+            else if(bedlooking === "back" || bedlooking === "Back"){
+                bedBool = false;
+            }
+            else{
+                console.log("What if there is something scary under the Bed?");
+            }
+        } while (bedBool === true);
     }
 
     // Pocket (Inventory, collects stuff)
